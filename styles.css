@@ -1,0 +1,207 @@
+/* Valentine's Day Bears Game - Shared Styles */
+
+/* CSS Variables */
+:root {
+  /* Bears Theme Colors */
+  --bears-navy: #0B162A;
+  --bears-orange: #C83803;
+  --bears-orange-hover: #a02f02;
+  --bears-bg1: #1a2744;
+  --bears-bg2: #2d3a5c;
+  
+  /* Valentine's Theme Colors */
+  --valentine-pink: #FFB6C1;
+  --valentine-red: #FF1744;
+  --valentine-bg1: #ffd6e7;
+  --valentine-bg2: #ffeef6;
+  
+  /* Neutral Colors */
+  --gray-light: #e5e7eb;
+  --gray-dark: #111827;
+  --white: #ffffff;
+  
+  /* Typography */
+  --font-system: system-ui, -apple-system, sans-serif;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-system);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Container */
+.container {
+  width: min(720px, 92vw);
+  padding: 26px 22px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Typography */
+h1 {
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 800;
+  margin: 12px 0 18px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: clamp(16px, 2.5vw, 18px);
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.emoji {
+  font-size: clamp(48px, 8vw, 72px);
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* Buttons */
+button, .btn {
+  display: inline-block;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 800;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.12s ease, background 0.12s ease;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+}
+
+button:active, .btn:active {
+  transform: translateY(0);
+}
+
+/* Bears Theme Styles */
+.bears-theme {
+  background: radial-gradient(circle at top, var(--bears-bg2), var(--bears-bg1));
+  color: var(--white);
+}
+
+.bears-theme .container {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--bears-navy);
+}
+
+.bears-theme .btn-primary {
+  background: var(--bears-orange);
+  color: var(--white);
+}
+
+.bears-theme .btn-primary:hover {
+  background: var(--bears-orange-hover);
+}
+
+/* Sold Out Theme */
+.soldout-theme {
+  background: radial-gradient(circle at top, #5a6b7d, #3a4a5c);
+  color: var(--white);
+}
+
+.soldout-theme .container {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--gray-dark);
+}
+
+.soldout-theme .btn-primary {
+  background: var(--bears-orange);
+  color: var(--white);
+}
+
+.soldout-theme .btn-primary:hover {
+  background: var(--bears-orange-hover);
+}
+
+/* Transition Theme */
+.transition-theme {
+  background: radial-gradient(circle at top, #d4a5d4, #c48ec4);
+  color: var(--white);
+}
+
+.transition-theme .container {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--gray-dark);
+}
+
+.transition-theme .btn-primary {
+  background: var(--valentine-red);
+  color: var(--white);
+}
+
+.transition-theme .btn-primary:hover {
+  background: #d01438;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 24px 20px;
+  }
+  
+  button, .btn {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+  
+  .container {
+    padding: 20px 16px;
+  }
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.mb-small {
+  margin-bottom: 12px;
+}
+
+.mb-medium {
+  margin-bottom: 24px;
+}
+
+.mb-large {
+  margin-bottom: 36px;
+}
+
+.mt-medium {
+  margin-top: 24px;
+}
