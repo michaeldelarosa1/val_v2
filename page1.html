@@ -5,6 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oh no...</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Envelope Seal Transition */
+    .seal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+    
+    .seal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .envelope-seal {
+      width: 200px;
+      height: 200px;
+      background: #ff3b7a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      box-shadow: 0 10px 40px rgba(255, 59, 122, 0.5);
+      animation: pulse 1.5s ease-in-out infinite;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    
+    .envelope-seal:hover {
+      transform: scale(1.1);
+    }
+    
+    .envelope-seal.opening {
+      animation: breakSeal 0.8s ease forwards;
+    }
+    
+    .seal-text {
+      color: white;
+      font-size: 18px;
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeInText 1s ease 0.5s forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    @keyframes breakSeal {
+      0% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.3) rotate(10deg);
+      }
+      100% { 
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body class="soldout-theme">
   <div class="container">
@@ -16,14 +97,37 @@
     
     <p class="mb-small">The Bears season tickets have been claimed by another fan.</p>
     <p class="mb-large">All premium seats are now <strong>SOLD OUT</strong>.</p>
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2NtYXlpbTQ5d2N5ZXV4bTN3N3gxMjIzMzZ0aTU5dTR3MHc5MzJmbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jo6aBWHJ9FyXoNleCe/giphy.gif"
+     alt="Bears celebration" style="width: min(300px, 80vw); margin: 20px auto; display: block;">
+
+    <p class="mb-small" style="font-size: 24px; margin-top: 32px;">However...</p>
     
-    <p class="mb-small" style="font-size: 24px; margin-top: 32px;">But wait...</p>
+    <p class="mb-medium">We do have a <strong>special message</strong> from the owners for you.</p>
     
-    <p class="mb-medium">There's something <strong>EVEN MORE IMPORTANT</strong> we need to tell you about.</p>
+    <p class="mb-large">They wanted to share something important...</p>
     
-    <p class="mb-large">Something that matters way more than any football game...</p>
-    
-    <a href="page2.html" class="btn btn-primary">CLICK HERE TO FIND OUT</a>
+    <button class="btn btn-primary" onclick="showSeal()">READ THE MESSAGE</button>
   </div>
+  
+  <div class="seal-overlay" id="sealOverlay">
+    <div class="envelope-seal" id="seal" onclick="breakSeal()">💌</div>
+    <div class="seal-text">Click to open</div>
+  </div>
+  
+  <script>
+    function showSeal() {
+      document.getElementById('sealOverlay').classList.add('active');
+    }
+    
+    function breakSeal() {
+      const seal = document.getElementById('seal');
+      seal.classList.add('opening');
+      
+      // Redirect after seal breaks
+      setTimeout(() => {
+        window.location.href = 'page2.html';
+      }, 1000);
+    }
+  </script>
 </body>
 </html>

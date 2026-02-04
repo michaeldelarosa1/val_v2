@@ -3,27 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Here's the thing...</title>
+  <title>A Letter For You</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .letter-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 40px 30px;
+      background: #fff;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      position: relative;
+    }
+    
+    .letter-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #ffc4d6;
+    }
+    
+    .letter-emoji {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    
+    .letter-to {
+      font-size: 18px;
+      font-style: italic;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .letter-body {
+      line-height: 1.8;
+      color: #333;
+      font-size: 16px;
+      text-align: left;
+    }
+    
+    .letter-body p {
+      margin-bottom: 16px;
+    }
+    
+    .letter-signature {
+      margin-top: 30px;
+      text-align: right;
+      font-style: italic;
+      color: #666;
+    }
+    
+    .envelope-btn {
+      margin-top: 30px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body class="transition-theme">
   <div class="container">
-    <span class="emoji">💭</span>
-    
-    <h1 class="mb-medium">Here's the thing...</h1>
-    
-    <p class="mb-small">Football games come and go.</p>
-    <p class="mb-small">Seasons end.</p>
-    <p class="mb-large">Tickets get used up.</p>
-    
-    <p class="mb-small" style="font-size: 22px; margin-top: 32px;"><strong>But some things last...</strong></p>
-    
-    <p class="mb-small">Some moments are more important than any game.</p>
-    <p class="mb-large">Some questions are more important than any touchdown.</p>
-    
-    <p class="mb-large" style="font-size: 22px; margin-top: 32px;">And this is one of those moments.</p>
-    
-    <a href="end_page.html" class="btn btn-primary">CONTINUE →</a>
+    <div class="letter-container">
+      <div class="letter-header">
+        <div class="letter-emoji">💌</div>
+        <div class="letter-to">To: Alyssa</div>
+      </div>
+      
+      <div class="letter-body">
+        <p>Hey,</p>
+        
+        <p>I know you were excited about those Bears tickets... but here's the thing:</p>
+        
+        <p>Football games come and go. Seasons end. Tickets get used up.</p>
+        
+        <p><strong>But some things last forever.</strong></p>
+        
+        <p>Some moments are more important than any game. Some questions are more important than any touchdown.</p>
+        
+        <p>And this is one of those moments.</p>
+        
+        <p>I have something I want to ask you...</p>
+      </div>
+      
+      <div class="letter-signature">
+        ❤️
+      </div>
+      
+      <div class="envelope-btn">
+        <a href="end_page.html" class="btn btn-primary">CONTINUE →</a>
+      </div>
+    </div>
   </div>
 </body>
 </html>

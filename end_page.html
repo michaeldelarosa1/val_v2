@@ -28,6 +28,12 @@
       font-family: system-ui, sans-serif;
       overflow: hidden;
       padding: 16px;
+      opacity: 0;
+      animation: slowReveal 2s ease forwards;
+    }
+
+    @keyframes slowReveal {
+      to { opacity: 1; }
     }
 
     /* FULL-SCREEN CONFETTI CANVAS */
@@ -55,6 +61,19 @@
       margin: 0 auto 10px;
       display: block;
       filter: drop-shadow(0 10px 14px rgba(0,0,0,.12));
+      transition: transform 0.15s ease-out;
+    }
+
+    .art.spin {
+      animation: spinPuppy 1s ease-in-out;
+    }
+
+    @keyframes spinPuppy {
+      0% { transform: rotate(0deg) scale(1); }
+      25% { transform: rotate(180deg) scale(1.2); }
+      50% { transform: rotate(360deg) scale(1); }
+      75% { transform: rotate(540deg) scale(1.2); }
+      100% { transform: rotate(720deg) scale(1); }
     }
 
     h1 {
@@ -204,6 +223,44 @@
     const noBtn = document.getElementById("noBtn");
     const result = document.getElementById("result");
     const hint = document.getElementById("hint");
+    const art = document.querySelector(".art");
+
+    /* ---------- PUPPY ANIMATION ---------- */
+    document.addEventListener("mousemove", (e) => {
+      const yesRect = yesBtn.getBoundingClientRect();
+      const yesCenterX = yesRect.left + yesRect.width / 2;
+      const yesCenterY = yesRect.top + yesRect.height / 2;
+      
+      // Calculate distance from cursor to Yes button
+      const distance = Math.hypot(e.clientX - yesCenterX, e.clientY - yesCenterY);
+      
+      // Maximum distance to start animation (in pixels)
+      const maxDistance = 300;
+      
+      if (distance < maxDistance) {
+        // Calculate intensity (0 to 1, where 1 is closest)
+        const intensity = 1 - (distance / maxDistance);
+        
+        // Calculate angle from puppy to cursor
+        const artRect = art.getBoundingClientRect();
+        const artCenterX = artRect.left + artRect.width / 2;
+        const artCenterY = artRect.top + artRect.height / 2;
+        
+        const dx = e.clientX - artCenterX;
+        const dy = e.clientY - artCenterY;
+        
+        // Move puppy slightly toward cursor, more as cursor gets closer to Yes
+        const moveX = dx * intensity * 0.15;
+        const moveY = dy * intensity * 0.15;
+        
+        // Add a subtle bounce effect
+        const bounce = Math.sin(Date.now() * 0.01 * (1 + intensity * 3)) * intensity * 3;
+        
+        art.style.transform = `translate(${moveX}px, ${moveY + bounce}px)`;
+      } else {
+        art.style.transform = 'translate(0, 0)';
+      }
+    });
 
     /* ---------- CONFETTI ---------- */
     const confettiCanvas = document.getElementById("confettiCanvas");
@@ -298,6 +355,9 @@
 
     /* ---------- YES CLICK ---------- */
     yesBtn.addEventListener("click", () => {
+      // Spin the puppy!
+      art.classList.add("spin");
+      
       zone.style.display = "none";
       hint.style.display = "none";     // HIDE THE HINT
       result.style.display = "block";
